@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80f86a7968f47b142a07724a30bd81c2, type: 3}
+  m_Name: ShotgunSway
+  m_EditorClassIdentifier: 
+  positionalSmoothingStrength: 0.08
+  rotationalSmoothingStrength: 0.06
+  lookPositional:
+    swayStrength: {x: 0.04, y: 0.04}
+    maxSway: {x: 0.03, y: 0.03}
+  movePositional:
+    swayStrength: {x: 0.03, y: 0.04, z: 0.05}
+    maxSway: {x: 0.05, y: 0.037, z: 0.08}
+  lookRotational:
+    swayStrength: {x: 4.5, y: 5.8}
+    maxSway: {x: 2.7, y: 2.7}
+  moveRotational:
+    swayStrength: {x: 2.7, y: 4.4, z: 0.6}
+    maxSway: {x: 4.4, y: 2.8, z: 1}
+  bobbing:
+    speed: 5.2
+    positionalAmount: 0.1
+    rotationalAmount: 0.7

@@ -1,0 +1,10 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!49 &4900000
+TextAsset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TestLevel
+  m_Script: '{"scenes":[{"fileID":102900000,"guid":"03eb939f67426714d9115e3627fa7b98","type":3},{"fileID":102900000,"guid":"91ac5102bcb044b4aab311db435bc0e3","type":3}]}'
