@@ -60,4 +60,5 @@ sysinfo.txt
 crashlytics-build.properties
 
 # Project specific files
+[Aa]ssets/Sandbox/
 !.keep

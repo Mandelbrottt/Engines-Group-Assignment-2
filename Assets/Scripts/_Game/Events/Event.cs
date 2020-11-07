@@ -1,4 +1,4 @@
-namespace Jampacked.ProjectInca.Gameplay
+namespace Jampacked.ProjectInca.Events
 {
 	public abstract class Event : System.EventArgs
 	{

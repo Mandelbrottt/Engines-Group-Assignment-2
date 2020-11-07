@@ -2,8 +2,15 @@
 
 using UnityEngine;
 
+using Jampacked.ProjectInca.Events;
+
 namespace Jampacked.ProjectInca
 {
+	class JumpEvent : Event<JumpEvent>
+	{
+		public GameObject sender;
+	}
+	
 	public class PlayerMotor : MonoBehaviour
 	{
 		[SerializeField]
@@ -264,17 +271,31 @@ namespace Jampacked.ProjectInca
 
 		private void Jump()
 		{
+			bool didJump = false;
 			if (m_lastTimeGrounded + COYOTE_TIME >= Time.time)
 			{
 				m_velocity.y = m_jumpVelocityY;
 
 				m_lastTimeJumpInputted = -999f; //reset last jump time
+
+				didJump = true;
 			} else if (m_wallRunning.LastTimeWallRun + WALL_JUMP_COYOTE_TIME >= Time.time)
 			{
 				m_wallRunning.PerformWallJump(ref m_velocity);
 
 				m_isWallRunning        = false;
 				m_lastTimeJumpInputted = -999f; //reset last jump time
+
+				didJump = true;
+			}
+
+			if (didJump)
+			{
+				var evt = new JumpEvent()
+				{
+					sender = gameObject,
+				};
+				EventDispatcherSingleton.Instance.PostEvent(evt);
 			}
 		}
 

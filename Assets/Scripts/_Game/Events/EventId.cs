@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Jampacked.ProjectInca.Gameplay
+namespace Jampacked.ProjectInca.Events
 {
 	public sealed class EventId
 	{

@@ -1,6 +1,6 @@
-using Jampacked.ProjectInca.Gameplay;
+using Jampacked.ProjectInca.Events;
 
-namespace Jampacked.ProjectInca
+namespace Jampacked.ProjectInca.Sandbox
 {
 	public sealed class OnClickEvent : Event<OnClickEvent>
 	{
@@ -10,5 +10,9 @@ namespace Jampacked.ProjectInca
 	public sealed class OnClick2Event : Event<OnClick2Event>
 	{
 		public UnityEngine.Vector2 position;
+	}
+
+	public sealed class OnKeyPressed : Event<OnKeyPressed>
+	{
 	}
 }
