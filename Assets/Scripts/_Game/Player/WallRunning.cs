@@ -1,9 +1,16 @@
 ﻿using System.Collections.Generic;
 
+using Jampacked.ProjectInca.Events;
+
 using UnityEngine;
 
 namespace Jampacked.ProjectInca
 {
+	public class WallrunEvent : Events.Event<WallrunEvent>
+	{
+		public GameObject sender;
+	}
+	
 	public class WallRunning : MonoBehaviour
 	{
 		public enum Side
@@ -17,8 +24,6 @@ namespace Jampacked.ProjectInca
 
 		private PlayerMovementProps.WallRunProps m_wallrunProps;
 
-		//[Header("Player and Camera")]
-		//[SerializeField]
 		private Camera m_mainCamera = null;
 
 		private PlayerRotationController m_rotationController = null;
@@ -156,6 +161,12 @@ namespace Jampacked.ProjectInca
 			if (IsWallRunStartValid(wallHitGameObject, a_isGrounded, a_verticalAxis))
 			{
 				StartWallRun(ref a_velocity, wallHitGameObject, wallHitNormal);
+				
+				var evt = new WallrunEvent()
+				{
+					sender = gameObject,
+				};
+				EventDispatcherSingleton.Instance.PostEvent(evt);
 			}
 		}
 

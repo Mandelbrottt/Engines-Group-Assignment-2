@@ -1,11 +1,25 @@
 ﻿using System.Collections.Generic;
 
+using Jampacked.ProjectInca.Events;
+
 using TMPro;
 
 using UnityEngine;
 
 namespace Jampacked.ProjectInca
 {
+	public enum WeaponType {
+		Pistol = 0,
+		Assault,
+		Shotgun,
+		Marksman,
+	}
+	
+	public class WeaponSwapEvent : Events.Event<WeaponSwapEvent>
+	{
+		public WeaponType weaponType;
+	}
+	
 	public class WeaponHolder : MonoBehaviour
 	{
 		[SerializeField]
@@ -198,6 +212,12 @@ namespace Jampacked.ProjectInca
 
 				m_swayController.swayProps       = newWeapon.swayProps;
 				m_bobbingController.BobbingProps = newWeapon.swayProps.Bobbing;
+
+				var evt = new WeaponSwapEvent()
+				{
+					weaponType = (WeaponType) weaponIndex,
+				};
+				EventDispatcherSingleton.Instance.PostEvent(evt);
 
 			}
 		}

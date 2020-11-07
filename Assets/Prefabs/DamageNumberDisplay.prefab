@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7714324669809757855}
   - component: {fileID: 6576940463598609215}
-  - component: {fileID: 7714324669809757853}
   - component: {fileID: 7714324669809757852}
   - component: {fileID: 7714324669809757854}
   m_Layer: 0
@@ -56,14 +55,6 @@ MonoBehaviour:
   sizeMultiplier: 0.012
   fadeSpeed: 1
   positionDeltaY: 2
---- !u!222 &7714324669809757853
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7714324669809757848}
-  m_CullTransparentMesh: 0
 --- !u!23 &7714324669809757852
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -79,6 +70,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -103,6 +95,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &7714324669809757854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,6 +111,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

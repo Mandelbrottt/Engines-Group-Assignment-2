@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7049367009874801263}
   - component: {fileID: 3723916673248920399}
   - component: {fileID: 1955389815284032133}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Frog_low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,6 +55,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -79,6 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &717142923371588159
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 265697975528746988}
   - component: {fileID: 1298861877576467083}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +136,7 @@ GameObject:
   - component: {fileID: 1265040633937017296}
   - component: {fileID: 997882631378525779}
   - component: {fileID: 3596659105531431500}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,6 +180,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -202,6 +205,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5843066330597416805
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8802542891249506976}
   - component: {fileID: 2539743010127428244}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Critcal Spot
   m_TagString: WeakSpot
   m_Icon: {fileID: 0}
@@ -257,7 +261,7 @@ GameObject:
   - component: {fileID: 7048084576731842781}
   - component: {fileID: 2964819462015380108}
   - component: {fileID: 4671310154806858720}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cueyatl
   m_TagString: Untagged
   m_Icon: {fileID: 0}

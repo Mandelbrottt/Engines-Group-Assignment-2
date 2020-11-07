@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6356644081358741266}
   - component: {fileID: 8796021084563786573}
   - component: {fileID: 6582460488374555963}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Foot L Retopo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,6 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -80,6 +81,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &6582460488374555963
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -104,7 +106,7 @@ GameObject:
   - component: {fileID: 7453952348227892228}
   - component: {fileID: 3280692878875684226}
   - component: {fileID: 1940274662778378313}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Leg R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,6 +150,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -172,6 +175,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1089106251816440655
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,7 +188,7 @@ GameObject:
   - component: {fileID: 8177668012026090087}
   - component: {fileID: 390054538087170953}
   - component: {fileID: -6832047271647263639}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SpawnedRock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,6 +263,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -283,6 +288,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1633606619843668334
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,7 +301,7 @@ GameObject:
   - component: {fileID: 6773233021914098831}
   - component: {fileID: 7977975743743913156}
   - component: {fileID: 7789275302000508879}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Arm L.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -339,6 +345,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -363,6 +370,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &7789275302000508879
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -388,7 +396,7 @@ GameObject:
   - component: {fileID: 2776235508566207360}
   - component: {fileID: 5546568715482039710}
   - component: {fileID: 2271862631407375883}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Body Retopo.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -432,6 +440,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -456,6 +465,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &2271862631407375883
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -481,7 +491,7 @@ GameObject:
   - component: {fileID: 7380978173637825497}
   - component: {fileID: 7617092705948062537}
   - component: {fileID: 3718894350164794530}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Arm R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -525,6 +535,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -549,6 +560,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &3718894350164794530
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -573,7 +585,7 @@ GameObject:
   - component: {fileID: 1977806452266522457}
   - component: {fileID: 831353670193709282}
   - component: {fileID: 4605531435036770824}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Body Retopo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -617,6 +629,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -641,6 +654,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5079751707764207447
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,7 +667,7 @@ GameObject:
   - component: {fileID: 1460848808645471419}
   - component: {fileID: 8353508792777826727}
   - component: {fileID: 8161968381187325111}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Foot R Retopo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -697,6 +711,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -721,6 +736,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &8161968381187325111
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -746,7 +762,7 @@ GameObject:
   - component: {fileID: 4160329791129185841}
   - component: {fileID: 5234422699274187041}
   - component: {fileID: 573854347820027391}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Arm R.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -790,6 +806,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -814,6 +831,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &573854347820027391
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -838,7 +856,7 @@ GameObject:
   - component: {fileID: 3341078093120452113}
   - component: {fileID: 7546653747643289809}
   - component: {fileID: 7100344765129236613}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Leg L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -882,6 +900,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -906,6 +925,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &8214807277016625544
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,7 +938,7 @@ GameObject:
   - component: {fileID: 7512140049094729595}
   - component: {fileID: 6084553325125012324}
   - component: {fileID: 5348654594780421701}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sphere
   m_TagString: WeakSpot
   m_Icon: {fileID: 0}
@@ -962,6 +982,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -986,6 +1007,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &5348654594780421701
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1011,7 +1033,7 @@ GameObject:
   - component: {fileID: 4670494091119892985}
   - component: {fileID: 8454110673589009172}
   - component: {fileID: 5035860032177723535}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Arm L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1055,6 +1077,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1079,6 +1102,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &5035860032177723535
 SphereCollider:
   m_ObjectHideFlags: 0
