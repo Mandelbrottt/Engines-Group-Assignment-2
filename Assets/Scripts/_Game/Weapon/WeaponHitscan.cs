@@ -1,8 +1,16 @@
 ﻿using System.Collections;
+
+using Jampacked.ProjectInca.Events;
+
 using UnityEngine;
 
 namespace Jampacked.ProjectInca
 {
+	public class WeaponFiredEvent : Events.Event<WeaponFiredEvent>
+	{
+		public GameObject objectHit = null;
+	}
+
 	public class WeaponHitscan : Weapon
 	{
 		[Header("Bullet Trail")]
@@ -33,7 +41,9 @@ namespace Jampacked.ProjectInca
 			{
 				return false;
 			}
-			
+
+			var evt = new WeaponFiredEvent();
+
 			Vector3    bulletTrailEndPos;
 			RaycastHit hit;
 			if (Physics.Raycast(a_fireStartPosition, a_fireDirection, out hit, range, ~layersToIgnore))
@@ -41,10 +51,14 @@ namespace Jampacked.ProjectInca
 				bulletTrailEndPos = hit.point;
 
 				ProcessBulletHit(hit.transform.gameObject, hit.point);
+
+				evt.objectHit = hit.transform.gameObject;
 			} else //no hit
 			{
 				bulletTrailEndPos = a_fireStartPosition + (a_fireDirection * range);
 			}
+
+			EventDispatcherSingleton.Instance.PostEvent(evt);
 
 			Vector3 muzzleScreenPosFPP = m_weaponCamera.WorldToScreenPoint(muzzleFPP.position);
 			Vector3 muzzleWorldPosFPP  = m_mainCamera.ScreenToWorldPoint(muzzleScreenPosFPP);
@@ -99,8 +113,8 @@ namespace Jampacked.ProjectInca
 					MyHelper.FindFirstParentWithComponent(
 						a_objectHit,
 						typeof(Health)
-					); 
-				
+					);
+
 				if (objectWithHealth)
 				{
 					objectHitHealth = objectWithHealth.GetComponent<Health>();
@@ -121,7 +135,7 @@ namespace Jampacked.ProjectInca
 				}
 
 				objectHitHealth.TakeDamage(damageToInflict);
-				
+
 				CreateDamageNumberPopup(a_hitPosition, damageToInflict, didHitWeakSpot);
 			}
 		}
@@ -162,13 +176,13 @@ namespace Jampacked.ProjectInca
 		IEnumerator ReloadRoutine(float a_delay)
 		{
 			AimOut();
-			
+
 			m_isReloading = true;
 
 			yield return new WaitForSeconds(a_delay);
-			
+
 			animatorFPP.Play("Reload");
-			
+
 			yield return new WaitForSeconds(reloadDuration);
 
 			int clipAmmoBeforeReload = m_currentClipAmmo;
