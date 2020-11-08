@@ -746,15 +746,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a47499920a614124fa920fd1201c0fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Objective1: {fileID: 2044136596}
-  JumpIcon: {fileID: 21300000, guid: 96b8584ebc1f3dd44b71ee1fb82d208c, type: 3}
-  WallrunIcon: {fileID: 21300000, guid: 9f4a988d8194b864cb6d48637f3d9957, type: 3}
-  SwapGunIcon: {fileID: 21300000, guid: 1b9087f2e9472ba4ab40e295c03ea871, type: 3}
-  ShootEnemyIcon: {fileID: 21300000, guid: 37c85fa79b56f924c9454c085b7deca4, type: 3}
-  ShootWeakspotIcon: {fileID: 21300000, guid: aafd1f2b40a154741b5c5124e06f269b, type: 3}
-  IncompleteCheckbox: {fileID: 21300000, guid: ce8e2f41954d4a84b82681db3ce7eb36, type: 3}
-  CompleteCheckbox: {fileID: 21300000, guid: e977074537755cf47b3019b398631ded, type: 3}
-  NextRoomIcon: {fileID: 21300000, guid: 5c69c8b7c7f81a7488ab2d09d500695e, type: 3}
+  objective1: {fileID: 2044136596}
+  jumpIcon: {fileID: 21300000, guid: 96b8584ebc1f3dd44b71ee1fb82d208c, type: 3}
+  wallrunIcon: {fileID: 21300000, guid: 9f4a988d8194b864cb6d48637f3d9957, type: 3}
+  swapGunIcon: {fileID: 21300000, guid: 1b9087f2e9472ba4ab40e295c03ea871, type: 3}
+  shootEnemyIcon: {fileID: 21300000, guid: 37c85fa79b56f924c9454c085b7deca4, type: 3}
+  shootWeakspotIcon: {fileID: 21300000, guid: aafd1f2b40a154741b5c5124e06f269b, type: 3}
+  incompleteCheckbox: {fileID: 21300000, guid: ce8e2f41954d4a84b82681db3ce7eb36, type: 3}
+  completeCheckbox: {fileID: 21300000, guid: e977074537755cf47b3019b398631ded, type: 3}
+  nextRoomIcon: {fileID: 21300000, guid: 5c69c8b7c7f81a7488ab2d09d500695e, type: 3}
   currentIcon: {fileID: 325816228}
   currentCheckbox: {fileID: 1475636377}
 --- !u!850595691 &1251217657
