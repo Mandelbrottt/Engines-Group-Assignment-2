@@ -33,6 +33,7 @@ MonoBehaviour:
       maxInitialHorizontalSpeed: 20
       maxInitialVerticalSpeed: 7
       maxInitialDistanceFromWall: 0.7
+      maxFollowUpVerticalFactor: 0.5
     duringProps:
       gravityMultiplier: 0.27
       slowDownRate: 0.15
@@ -49,4 +50,4 @@ MonoBehaviour:
       cameraTiltSpeed: 18
       nonWallLayers:
         serializedVersion: 2
-        m_Bits: 3894
+        m_Bits: 16182
