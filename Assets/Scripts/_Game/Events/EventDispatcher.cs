@@ -75,7 +75,7 @@ namespace Jampacked.ProjectInca.Events
 				Debug.LogError($"Invalid DispatchBehaviour!");
 			} else
 		#else
-			var list = m_eventQueue[a_behaviour];		
+			var queue = m_eventQueue[a_behaviour];		
 		#endif
 			{
 				queue.Enqueue(new EventQueueItem(a_args, id));

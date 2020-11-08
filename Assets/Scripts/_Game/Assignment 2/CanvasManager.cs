@@ -220,6 +220,11 @@ namespace Acked
 			{
 				(bool hit, bool vital) hit = (false, false);
 
+				if (evt.objectHit == null)
+				{
+					return;
+				}
+				
 				int layer = LayerMask.NameToLayer("Enemy");
 				if (evt.objectHit.CompareTag("WeakSpot"))
 				{

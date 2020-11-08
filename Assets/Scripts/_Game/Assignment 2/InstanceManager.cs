@@ -20,7 +20,7 @@ namespace Acked
 			SceneManager.LoadScene("Player", LoadSceneMode.Additive);
 			SceneManager.LoadScene("TutorialScene", LoadSceneMode.Additive);
 
-			SceneManager.SetActiveScene(SceneManager.GetSceneByName("Player"));
+			StartCoroutine(CheckPlayerIsLoaded());
 		#endif
 		}
 
