@@ -117,6 +117,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -141,6 +142,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &8208347457062879538
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -292,7 +294,7 @@ MonoBehaviour:
   range: 60
   layersToIgnore:
     serializedVersion: 2
-    m_Bits: 3894
+    m_Bits: 12086
   currentReserveAmmo: 50
   maxReserveAmmo: 80
   maxClipAmmo: 6
@@ -306,10 +308,8 @@ MonoBehaviour:
   fireAudioClip: {fileID: 8300000, guid: 8f2adebb121201340814fd65cb061331, type: 3}
   animatorFPP: {fileID: 8208347457102313093}
   animatorTPP: {fileID: 0}
-  damageNumberDisplayPrefab: {fileID: 6576940463598609215, guid: 8306ed1aff73cd34481d4b685ac41888,
-    type: 3}
-  bulletTrailFPP: {fileID: 6411677855791286828, guid: c32fcff607433224f9555b88f0e2e52d,
-    type: 3}
+  damageNumberDisplayPrefab: {fileID: 6576940463598609215, guid: 8306ed1aff73cd34481d4b685ac41888, type: 3}
+  bulletTrailFPP: {fileID: 6411677855791286828, guid: c32fcff607433224f9555b88f0e2e52d, type: 3}
   bulletTrailLayerMaskFPP:
     serializedVersion: 2
     m_Bits: 256

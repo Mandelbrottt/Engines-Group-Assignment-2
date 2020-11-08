@@ -9,10 +9,21 @@ using UnityEngine.UI;
 
 using TMPro;
 
+using UnityEngine.SceneManagement;
+
 using Event = Jampacked.ProjectInca.Events.Event;
 
 namespace Acked
 {
+	public class ObjectiveCompleteEvent : Event<ObjectiveCompleteEvent>
+	{
+		public int objectiveId;
+	}
+
+	public class SceneResetEvent : Event<SceneResetEvent>
+	{
+	}
+
 	public class CanvasManager : MonoBehaviour
 	{
 		public TMP_Text objective1;
@@ -46,6 +57,7 @@ namespace Acked
 			(false, "Shoot the frog in the head"),
 			(true, "Continue to next room"),
 			(true, "Play around and escape when satisfied"),
+			(false, "Press T to reset the level"),
 		};
 
 		private Sprite[] m_objectiveImages;
@@ -64,6 +76,7 @@ namespace Acked
 				shootWeakspotIcon,
 				nextRoomIcon,
 				nextRoomIcon,
+				jumpIcon,
 			};
 		}
 
@@ -71,7 +84,7 @@ namespace Acked
 		private void Start()
 		{
 			objective1.text = m_objectiveStrings[m_objectiveIndex].ObjectiveText;
-			
+
 			EventDispatcherSingleton.Instance.AddListener<RoomColliderEvent>(OnRoomColliderEvent);
 
 			EventDispatcherSingleton.Instance.AddListener<JumpEvent>(OnPlayerJumped);
@@ -82,7 +95,8 @@ namespace Acked
 
 		private void OnDestroy()
 		{
-			EventDispatcherSingleton.Instance.RemoveListener<RoomColliderEvent>(OnRoomColliderEvent);	
+			EventDispatcherSingleton.Instance.RemoveListener<RoomColliderEvent>(OnRoomColliderEvent);
+
 			EventDispatcherSingleton.Instance.RemoveListener<JumpEvent>(OnPlayerJumped);
 			EventDispatcherSingleton.Instance.RemoveListener<WallrunEvent>(OnPlayerWallrun);
 			EventDispatcherSingleton.Instance.RemoveListener<WeaponSwapEvent>(OnPlayerSwappedWeapon);
@@ -94,34 +108,60 @@ namespace Acked
 		{
 			if (!m_isCoroutineRunning && m_tryRunCoroutine)
 			{
-				StartCoroutine(FadeToNextText());
+				StartCoroutine(CompleteCurrentObjective());
 				m_tryRunCoroutine = false;
+
+			}
+			if (m_objectiveIndex >= m_objectiveStrings.Length - 1
+				&& Input.GetKeyDown(KeyCode.T))
+			{
+				EventDispatcherSingleton.Instance.PostEvent(new SceneResetEvent());
 			}
 		}
 
-		private IEnumerator FadeToNextText()
+		private IEnumerator CompleteCurrentObjective()
 		{
 			m_isCoroutineRunning = true;
+
+			currentCheckbox.sprite = completeCheckbox;
+
+			EventDispatcherSingleton.Instance.PostEvent(
+				new ObjectiveCompleteEvent()
+				{
+					objectiveId = m_objectiveIndex,
+				}
+			);
+
+			m_objectiveIndex++;
+
+			yield return new WaitForSecondsRealtime(1);
+
 			Color alpha = objective1.color;
 
 			for (int i = 9; i >= 0; i--)
 			{
-				alpha.a           = i / 10f;
-				objective1.color  = alpha;
-				currentIcon.color = alpha;
-				yield return new WaitForSeconds(0.1f);
+				alpha.a               = i / 10f;
+				objective1.color      = alpha;
+				currentIcon.color     = alpha;
+				currentCheckbox.color = alpha;
+				yield return new WaitForSecondsRealtime(0.1f);
 			}
 
-			m_objectiveIndex++;
-			objective1.text    = m_objectiveStrings[m_objectiveIndex].ObjectiveText;
-			currentIcon.sprite = m_objectiveImages[m_objectiveIndex];
+			currentCheckbox.sprite = incompleteCheckbox;
 
-			for (int i = 1; i <= 10; i++)
+			if (m_objectiveIndex < m_objectiveStrings.Length)
 			{
-				alpha.a           = i / 10f;
-				objective1.color  = alpha;
-				currentIcon.color = alpha;
-				yield return new WaitForSeconds(0.1f);
+				objective1.text    = m_objectiveStrings[m_objectiveIndex].ObjectiveText;
+				currentIcon.sprite = m_objectiveImages[m_objectiveIndex];
+
+				for (int i = 1; i <= 10; i++)
+				{
+					alpha.a               = i / 10f;
+					objective1.color      = alpha;
+					currentIcon.color     = alpha;
+					currentCheckbox.color = alpha;
+					yield return new WaitForSecondsRealtime(0.1f);
+				}
 			}
 
 			m_isCoroutineRunning = false;
@@ -131,15 +171,15 @@ namespace Acked
 		{
 			if (a_evt is RoomColliderEvent evt)
 			{
-				if (m_objectiveStrings[m_objectiveIndex].IsOnTrigger 
-					&& !m_triggeredColliders.Contains(evt.sender))
+				if (m_objectiveIndex < m_objectiveStrings.Length
+				    && m_objectiveStrings[m_objectiveIndex].IsOnTrigger
+				    && !m_triggeredColliders.Contains(evt.sender))
 				{
 					m_triggeredColliders.Add(evt.sender);
 					m_tryRunCoroutine = true;
 				}
 			}
 		}
-
 
 		private void OnPlayerJumped(in Event a_evt)
 		{
@@ -179,19 +219,18 @@ namespace Acked
 			if (a_evt is WeaponFiredEvent evt)
 			{
 				(bool hit, bool vital) hit = (false, false);
-				
+
 				int layer = LayerMask.NameToLayer("Enemy");
 				if (evt.objectHit.CompareTag("WeakSpot"))
 				{
 					hit.hit = hit.vital = true;
-				}
-				else if (evt.objectHit.layer == layer)
+				} else if (evt.objectHit.layer == layer)
 				{
 					hit.hit = true;
 				}
 
-				if (m_objectiveIndex == 6 && hit.hit
-				    || m_objectiveIndex == 7 && hit.vital)
+				if ((m_objectiveIndex == 6 && hit.hit)
+				    || (m_objectiveIndex == 7 && hit.vital))
 				{
 					m_tryRunCoroutine = true;
 				}
