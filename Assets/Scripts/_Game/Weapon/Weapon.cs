@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 
 using TMPro;
+
 using UnityEngine;
 
 namespace Jampacked.ProjectInca
@@ -13,7 +15,7 @@ namespace Jampacked.ProjectInca
 		public WeaponSwayProps swayProps = null;
 
 		public Transform fppTransform = null;
-		
+
 		[Header("Weapon")]
 		[SerializeField]
 		protected float roundsPerMinute;
@@ -70,7 +72,7 @@ namespace Jampacked.ProjectInca
 		[Header("Aiming")]
 		[SerializeField]
 		protected bool canAimDownSight;
-		
+
 		[SerializeField]
 		protected float aimDownSightZoomFactor;
 
@@ -105,6 +107,7 @@ namespace Jampacked.ProjectInca
 		//}
 
 		protected AudioSource m_audioSource;
+
 		public AudioSource WeaponAudioSource
 		{
 			set { m_audioSource = value; }
@@ -153,10 +156,12 @@ namespace Jampacked.ProjectInca
 			set { maxClipAmmo = value; }
 		}
 
+		private static Queue<DamageNumberDisplay> s_pool;
+
 		private void Awake()
 		{
 			var refs = GetComponentInParent<PlayerReferences>();
-			m_mainCamera = refs.MainCamera;
+			m_mainCamera   = refs.MainCamera;
 			m_weaponCamera = refs.WeaponCamera;
 
 			m_playerController = refs.PlayerController;
@@ -175,10 +180,23 @@ namespace Jampacked.ProjectInca
 					break;
 				}
 			}
+
+			if (s_pool == null)
+			{
+				s_pool = new Queue<DamageNumberDisplay>();
+
+				for (int i = 0; i < 20; i++)
+				{
+					var dnd = Instantiate(damageNumberDisplayPrefab);
+					dnd.gameObject.SetActive(false);
+					s_pool.Enqueue(dnd);
+				}
+			}
 		}
 
-		private void Start()
+		private void OnDestroy()
 		{
+			s_pool = null;
 		}
 
 		private void Update()
@@ -188,7 +206,7 @@ namespace Jampacked.ProjectInca
 			{
 				currentReserveAmmo = maxReserveAmmo;
 			}
-			
+
 			// Update this value when changed in the inspector
 			m_firingCooldown = 60f / roundsPerMinute;
 		}
@@ -229,9 +247,12 @@ namespace Jampacked.ProjectInca
 
 		protected void CreateDamageNumberPopup(Vector3 a_hitPosition, float a_damageDealt, bool a_isWeakSpotHit)
 		{
-			DamageNumberDisplay newDamageNumberDisplay = Instantiate(damageNumberDisplayPrefab);
+			var dnd = s_pool.Dequeue();
+			s_pool.Enqueue(dnd);
 
-			newDamageNumberDisplay.Init(m_mainCamera.transform, a_hitPosition, a_damageDealt, a_isWeakSpotHit);
+			dnd.gameObject.SetActive(true);
+
+			dnd.Init(m_mainCamera.transform, a_hitPosition, a_damageDealt, a_isWeakSpotHit);
 		}
 
 		public abstract bool FireWeapon(
@@ -244,8 +265,8 @@ namespace Jampacked.ProjectInca
 
 		public bool ToggleAimDownSight()
 		{
-			return m_isAimingDownSight 
-				       ? AimOut() 
+			return m_isAimingDownSight
+				       ? AimOut()
 				       : AimIn();
 		}
 
@@ -265,7 +286,7 @@ namespace Jampacked.ProjectInca
 			m_isAimingDownSight = true;
 
 			animatorFPP.SetBool("IsAimingDownSight", true);
-			
+
 			// TODO: Convert to event
 			m_playerController.SetCameraZoom(aimDownSightZoomFactor);
 

@@ -8,14 +8,22 @@ namespace Jampacked.ProjectInca.Events
 
 		public static EventDispatcher Instance
 		{
-			get { return s_instance; }
+			get
+			{
+				if (!s_instance)
+				{
+					s_instance = FindObjectOfType<EventDispatcherSingleton>();
+				}
+				
+				return s_instance;
+			}
 		}
 
 		protected override void Awake()
 		{
 			base.Awake();
 			
-			Debug.Assert(s_instance == null);
+			Debug.Assert(s_instance == null || s_instance == this);
 			s_instance = this;
 		}
 	}

@@ -9,6 +9,10 @@ using Event = Jampacked.ProjectInca.Events.Event;
 
 namespace Acked
 {
+	public class InstanceManagerInitEvent : Event<InstanceManagerInitEvent>
+	{
+	}
+
 	public class InstanceManager : MonoBehaviour
 	{
 		private AsyncOperation m_playerSceneUnload;
@@ -16,16 +20,16 @@ namespace Acked
 
 		private void Awake()
 		{
-		#if !UNITY_EDITOR
-			SceneManager.LoadScene("Player", LoadSceneMode.Additive);
-			SceneManager.LoadScene("TutorialScene", LoadSceneMode.Additive);
-
-			StartCoroutine(CheckPlayerIsLoaded());
-		#endif
 		}
 
 		private void Start()
 		{
+		#if !UNITY_EDITOR
+			LoadScenesAdditive();
+		#else
+			EventDispatcherSingleton.Instance.PostEvent(new InstanceManagerInitEvent());
+		#endif
+
 			EventDispatcherSingleton.Instance.AddListener<SceneResetEvent>(OnSceneReset);
 		}
 
@@ -41,11 +45,8 @@ namespace Acked
 			    && m_playerSceneUnload.isDone
 			    && m_levelSceneUnload.isDone)
 			{
-				SceneManager.LoadScene("Player", LoadSceneMode.Additive);
-				SceneManager.LoadScene("TutorialScene", LoadSceneMode.Additive);
+				LoadScenesAdditive();
 
-				StartCoroutine(CheckPlayerIsLoaded());
-					
 				m_playerSceneUnload = m_levelSceneUnload = null;
 			}
 		}
@@ -65,6 +66,16 @@ namespace Acked
 			}
 
 			SceneManager.SetActiveScene(scene);
+		}
+
+		private void LoadScenesAdditive()
+		{
+			SceneManager.LoadScene("Player", LoadSceneMode.Additive);
+			SceneManager.LoadScene("TutorialScene", LoadSceneMode.Additive);
+
+			StartCoroutine(CheckPlayerIsLoaded());
+
+			EventDispatcherSingleton.Instance.PostEvent(new InstanceManagerInitEvent());
 		}
 	}
 }

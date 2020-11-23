@@ -25,7 +25,7 @@ namespace Jampacked.ProjectInca
 
 		int m_bulletTrailLayerNumFPP;
 
-		void Start()
+		protected void Start()
 		{
 			//determine layer number based on layermask
 			m_bulletTrailLayerNumFPP = (int) Mathf.Log(bulletTrailLayerMaskFPP.value, 2);

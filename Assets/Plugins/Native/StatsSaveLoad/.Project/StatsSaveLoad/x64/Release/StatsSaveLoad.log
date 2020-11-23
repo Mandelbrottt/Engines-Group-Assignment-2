@@ -1,0 +1,9 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: The intermediate directory (x64\Release\) contains files shared from another project (LevelSaveLoad.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  SaveSerializer.cpp
+     Creating library C:\dev\School\Engines\Assignments\Assignment 2\Assets\Plugins\Native\StatsSaveLoad\.Project\..\Library\StatsSaveLoad.lib and object C:\dev\School\Engines\Assignments\Assignment 2\Assets\Plugins\Native\StatsSaveLoad\.Project\..\Library\StatsSaveLoad.exp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 207 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  StatsSaveLoad.vcxproj -> C:\dev\School\Engines\Assignments\Assignment 2\Assets\Plugins\Native\StatsSaveLoad\.Project\..\Library\StatsSaveLoad.dll
+  Could Not Find C:\dev\School\Engines\Assignments\Assignment 2\Assets\Plugins\Native\StatsSaveLoad\Library\StatsSaveLoad.ilk
