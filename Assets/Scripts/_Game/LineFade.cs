@@ -35,6 +35,11 @@ namespace Jampacked.ProjectInca
 			m_lineRenderer.colorGradient = gradient;
 		}
 
+		private void OnEnable()
+		{
+			m_interpolationParam = 0;
+		}
+
 		// Update is called once per frame
 		void Update()
 		{

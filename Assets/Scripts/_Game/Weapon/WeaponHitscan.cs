@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 
 using Jampacked.ProjectInca.Events;
 
@@ -20,6 +21,8 @@ namespace Jampacked.ProjectInca
 		[SerializeField]
 		LayerMask bulletTrailLayerMaskFPP;
 
+		private static Queue<(LineRenderer, float)> s_trailPool;
+
 		const float BULLET_TRAIL_LIFETIME         = 2f;
 		const float MIN_DISTANCE_FOR_BULLET_TRAIL = 0.8f;
 
@@ -29,6 +32,53 @@ namespace Jampacked.ProjectInca
 		{
 			//determine layer number based on layermask
 			m_bulletTrailLayerNumFPP = (int) Mathf.Log(bulletTrailLayerMaskFPP.value, 2);
+			
+			if (s_trailPool == null)
+			{
+				s_trailPool = new Queue<(LineRenderer, float)>();
+
+				for (int i = 0; i < 20; i++)
+				{
+					var trail = Instantiate(bulletTrailFPP);
+					trail.positionCount = 3;
+
+					var go = trail.gameObject;
+					go.SetActive(false);
+					go.layer = m_bulletTrailLayerNumFPP;
+					
+					s_trailPool.Enqueue((trail, 0.0f));
+				}
+			}
+		}
+
+		protected override void OnDestroy()
+		{
+			base.OnDestroy();
+
+			s_trailPool = null;
+		}
+
+		protected override void Update()
+		{
+			base.Update();
+
+			float dt = Time.deltaTime;
+			
+			for (var i = 0; i < s_trailPool.Count; i++)
+			{
+				var tuple = s_trailPool.Dequeue();
+
+				var go = tuple.Item1.gameObject;
+				
+				if (tuple.Item2 > BULLET_TRAIL_LIFETIME && go.activeSelf)
+				{
+					go.SetActive(false);
+				}
+				
+				tuple.Item2 += dt;
+				
+				s_trailPool.Enqueue(tuple);
+			}
 		}
 
 		public override bool FireWeapon(
@@ -70,9 +120,7 @@ namespace Jampacked.ProjectInca
 			{
 				DrawBulletTrail(
 					muzzleWorldPosFPP,
-					bulletTrailEndPos,
-					bulletTrailFPP.gameObject,
-					m_bulletTrailLayerNumFPP
+					bulletTrailEndPos
 				);
 			}
 
@@ -142,23 +190,20 @@ namespace Jampacked.ProjectInca
 
 		void DrawBulletTrail(
 			Vector3    a_startPos,
-			Vector3    a_endPos,
-			GameObject a_bulletTrailGO,
-			int        a_bulletTrailLayer = 0
+			Vector3    a_endPos
 		)
 		{
-			GameObject   newBulletTrailGO = Instantiate(a_bulletTrailGO, a_startPos, Quaternion.identity);
-			LineRenderer newBulletTrailLR = newBulletTrailGO.GetComponent<LineRenderer>();
+			var trail = s_trailPool.Dequeue().Item1;
+			s_trailPool.Enqueue((trail, 0));
 
-			newBulletTrailLR.positionCount = 3;
+			var go = trail.gameObject;
+			
+			go.SetActive(false);
+			go.SetActive(true);
 
-			newBulletTrailLR.SetPosition(0, a_startPos);
-			newBulletTrailLR.SetPosition(1, a_startPos + ((a_endPos - a_startPos) / 2f)); //halfway point
-			newBulletTrailLR.SetPosition(2, a_endPos);
-
-			newBulletTrailGO.layer = a_bulletTrailLayer;
-
-			GameObject.Destroy(newBulletTrailGO, BULLET_TRAIL_LIFETIME);
+			trail.SetPosition(0, a_startPos);
+			trail.SetPosition(1, a_startPos + ((a_endPos - a_startPos) / 2f)); //halfway point
+			trail.SetPosition(2, a_endPos);
 		}
 
 		public override bool Reload(float a_delay = 0f)

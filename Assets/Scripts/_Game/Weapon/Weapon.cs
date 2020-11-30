@@ -156,7 +156,7 @@ namespace Jampacked.ProjectInca
 			set { maxClipAmmo = value; }
 		}
 
-		private static Queue<DamageNumberDisplay> s_pool;
+		private static Queue<DamageNumberDisplay> s_numbersPool;
 
 		private void Awake()
 		{
@@ -181,25 +181,25 @@ namespace Jampacked.ProjectInca
 				}
 			}
 
-			if (s_pool == null)
+			if (s_numbersPool == null)
 			{
-				s_pool = new Queue<DamageNumberDisplay>();
+				s_numbersPool = new Queue<DamageNumberDisplay>();
 
 				for (int i = 0; i < 20; i++)
 				{
-					var dnd = Instantiate(damageNumberDisplayPrefab);
-					dnd.gameObject.SetActive(false);
-					s_pool.Enqueue(dnd);
+					var popup = Instantiate(damageNumberDisplayPrefab);
+					popup.gameObject.SetActive(false);
+					s_numbersPool.Enqueue(popup);
 				}
 			}
 		}
 
-		private void OnDestroy()
+		protected virtual void OnDestroy()
 		{
-			s_pool = null;
+			s_numbersPool = null;
 		}
 
-		private void Update()
+		protected virtual void Update()
 		{
 			//HACK: GET RID OF THIS IT'S JUST FOR TESTING
 			if (Input.GetKeyDown(KeyCode.H))
@@ -247,12 +247,12 @@ namespace Jampacked.ProjectInca
 
 		protected void CreateDamageNumberPopup(Vector3 a_hitPosition, float a_damageDealt, bool a_isWeakSpotHit)
 		{
-			var dnd = s_pool.Dequeue();
-			s_pool.Enqueue(dnd);
+			var popup = s_numbersPool.Dequeue();
+			s_numbersPool.Enqueue(popup);
 
-			dnd.gameObject.SetActive(true);
+			popup.gameObject.SetActive(true);
 
-			dnd.Init(m_mainCamera.transform, a_hitPosition, a_damageDealt, a_isWeakSpotHit);
+			popup.Init(m_mainCamera.transform, a_hitPosition, a_damageDealt, a_isWeakSpotHit);
 		}
 
 		public abstract bool FireWeapon(
